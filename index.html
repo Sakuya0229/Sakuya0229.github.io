@@ -32,7 +32,7 @@
         }
 
         let acceleration = { x: 0, y: 0, z: 0 };
-
+        let cnt = 0;
         function handleDeviceMotion(event) {
             // acceleration.x = event.acceleration.x;
             // acceleration.y = event.acceleration.y;
@@ -61,12 +61,19 @@
             );
 
             scoreElement.innerHTML = score.toFixed(2);
+
+            const cntElement = document.getElementById("count");
+            if (score >= 20){
+                cnt += 1;
+            }
+            cntElement.innerHTML = cnt.toFixed(2);
         }
     </script>
 </head>
 <body onload="requestDeviceMotionPermission()">
     <h1>加速度感測器測試</h1>
     <h2>分數: <span id="score">0</span></h2>
+    <h3>次數: <span id="count">0</span></h3>
     <p>X 軸加速度: <span id="accelerationX">0</span> m/s²</p>
     <p>Y 軸加速度: <span id="accelerationY">0</span> m/s²</p>
     <p>Z 軸加速度: <span id="accelerationZ">0</span> m/s²</p>
