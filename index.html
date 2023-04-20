@@ -33,6 +33,7 @@
 
         let acceleration = { x: 0, y: 0, z: 0 };
         let cnt = 0;
+        let level = 0;
         function handleDeviceMotion(event) {
             // acceleration.x = event.acceleration.x;
             // acceleration.y = event.acceleration.y;
@@ -68,12 +69,22 @@
             }
             cntElement.innerHTML = cnt.toFixed(2);
         }
+        setInterval(updateLevel, 5000);
+        function updatelevel(){
+            const levelElement = document.getElementById("level");
+            if(cnt >= 20 && level <= 5){
+                level += 1;
+            }
+            cnt = 0;
+            levelElement.innerHTML = level.toFixed(2);
+        }
     </script>
 </head>
 <body onload="requestDeviceMotionPermission()">
     <h1>加速度感測器測試</h1>
     <h2>分數: <span id="score">0</span></h2>
     <h3>次數: <span id="count">0</span></h3>
+    <h4>等級: <span id="level">0</span></h4>
     <p>X 軸加速度: <span id="accelerationX">0</span> m/s²</p>
     <p>Y 軸加速度: <span id="accelerationY">0</span> m/s²</p>
     <p>Z 軸加速度: <span id="accelerationZ">0</span> m/s²</p>
