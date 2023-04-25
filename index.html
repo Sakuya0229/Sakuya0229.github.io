@@ -72,7 +72,7 @@
         var myinterval = setInterval(updatelevel, 5000);
         function updatelevel(){
             const levelElement = document.getElementById("level");
-            if(cnt >= 15 && level < 5){
+            if(cnt >= 10 && level < 5){
                 level += 1;
                 if(level == 5){
                     clearInterval(myinterval);
@@ -84,7 +84,7 @@
 
                 }
             }
-            else if (cnt <= 15 && level > 1 ) {
+            else if (cnt <= 10 && level > 1 ) {
                 level -= 1;
                 clearInterval(myinterval);
                 myinterval = setInterval(updatelevel, 5000);
