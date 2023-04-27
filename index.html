@@ -75,6 +75,8 @@
             if(score < 15){
                 cnt -= 3;
             }
+            const cntElement = document.getElementById("count");
+            cntElement.innerHTML = cnt.toFixed(2);
         }
         var mylevelinterval = setInterval(updatelevel, 5000);
         function updatelevel(){
