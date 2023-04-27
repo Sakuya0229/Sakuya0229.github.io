@@ -34,6 +34,7 @@
         let acceleration = { x: 0, y: 0, z: 0 };
         let cnt = 0;
         let level = 1;
+        let notshake = 1;
         function handleDeviceMotion(event) {
             // acceleration.x = event.acceleration.x;
             // acceleration.y = event.acceleration.y;
@@ -67,16 +68,16 @@
 
             if (score >= 15 && cnt <= 15){
                 cnt += 1;
+                notshake = 0
             }
             cntElement.innerHTML = cnt.toFixed(2);
         }
         var mycntinterval = setInterval(updatecnt, 500);
         function updatecnt(){
-            if(score < 15 && cnt > 0){
+            if(notshake){
                 cnt -= 1;
             }
-            // const cntElement = document.getElementById("count");
-            cntElement.innerHTML = cnt.toFixed(2);
+            notshake = 1;
         }
         var mylevelinterval = setInterval(updatelevel, 5000);
         function updatelevel(){
