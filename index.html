@@ -33,7 +33,7 @@
 
         let acceleration = { x: 0, y: 0, z: 0 };
         let cnt = 0;
-        let level = 0;
+        let level = 1;
         function handleDeviceMotion(event) {
             // acceleration.x = event.acceleration.x;
             // acceleration.y = event.acceleration.y;
@@ -64,30 +64,37 @@
             scoreElement.innerHTML = score.toFixed(2);
 
             const cntElement = document.getElementById("count");
-            if (score >= 15){
+
+            if (score >= 15 && cnt <= 20){
                 cnt += 1;
             }
             cntElement.innerHTML = cnt.toFixed(2);
         }
-        var myinterval = setInterval(updatelevel, 5000);
+        var mycntinterval = setInterval(updatecnt, 1000);
+        function updatecnt(){
+            if(score < 15){
+                cnt -= 1;
+            }
+        }
+        var mylevelinterval = setInterval(updatelevel, 5000);
         function updatelevel(){
             const levelElement = document.getElementById("level");
             if(cnt >= 10 && level < 5){
                 level += 1;
                 if(level == 5){
-                    clearInterval(myinterval);
-                    myinterval = setInterval(updatelevel, 10000);
+                    clearInterval(mylevelinterval);
+                    mylevelinterval = setInterval(updatelevel, 10000);
                 }
                 else{
-                    clearInterval(myinterval);
-                    myinterval = setInterval(updatelevel, 5000);
+                    clearInterval(mylevelinterval);
+                    mylevelinterval = setInterval(updatelevel, 5000);
 
                 }
             }
             else if (cnt <= 10 && level > 1 ) {
                 level -= 1;
-                clearInterval(myinterval);
-                myinterval = setInterval(updatelevel, 5000);
+                clearInterval(mylevelinterval);
+                mylevelinterval = setInterval(updatelevel, 5000);
 
             }
             cnt = 0;
