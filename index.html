@@ -70,10 +70,10 @@
             }
             cntElement.innerHTML = cnt.toFixed(2);
         }
-        var mycntinterval = setInterval(updatecnt, 1000);
+        var mycntinterval = setInterval(updatecnt, 500);
         function updatecnt(){
             if(score < 15){
-                cnt -= 3;
+                cnt -= 1;
             }
             // const cntElement = document.getElementById("count");
             cntElement.innerHTML = cnt.toFixed(2);
