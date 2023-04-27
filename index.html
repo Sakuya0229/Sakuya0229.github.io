@@ -90,14 +90,13 @@
                     mylevelinterval = setInterval(updatelevel, 5000);
 
                 }
+                cnt = 0;
             }
             else if (cnt <= 10 && level > 1 ) {
                 level -= 1;
                 clearInterval(mylevelinterval);
                 mylevelinterval = setInterval(updatelevel, 5000);
-
             }
-            cnt = 0;
             levelElement.innerHTML = level.toFixed(2);
         }
     </script>
