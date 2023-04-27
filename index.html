@@ -74,7 +74,7 @@
         }
         var mycntinterval = setInterval(updatecnt, 500);
         function updatecnt(){
-            if(notshake){
+            if(notshake && cnt > 0){
                 cnt -= 1;
             }
             notshake = 1;
