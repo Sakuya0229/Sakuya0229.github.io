@@ -79,3 +79,46 @@ section {
 .project a:hover {
     text-decoration: underline;
 }
+
+.creation-filters {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.creation-filters button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.creation-filters button:hover {
+    background: #555;
+}
+
+.creation-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.creation {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.creation a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.creation a:hover {
+    text-decoration: underline;
+}
