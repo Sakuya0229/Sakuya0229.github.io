@@ -27,7 +27,7 @@
         </section>
 
         <section id="projects">
-            <h2>專案展示</h2>
+            <h2>專案</h2>
             <div class="project-filters">
                 <button onclick="filterProjects('all')">全部</button>
                 <button onclick="filterProjects('ai')">AI</button>
@@ -53,6 +53,33 @@
             </div>
         </section>
 
+        <section id="creations">
+            <h2>文章展示</h2>
+            <div class="creation-filters">
+                <button onclick="filterCreations('all')">全部</button>
+                <button onclick="filterCreations('tech')">技術</button>
+                <button onclick="filterCreations('life')">生活</button>
+                <button onclick="filterCreations('other')">其他</button>
+            </div>
+            <div class="creation-list">
+                <div class="creation tech">
+                    <h3>技術文章 1</h3>
+                    <p>文章描述</p>
+                    <a href="#">閱讀更多</a>
+                </div>
+                <div class="creation life">
+                    <h3>生活文章 1</h3>
+                    <p>文章描述</p>
+                    <a href="#">閱讀更多</a>
+                </div>
+                <div class="creation other">
+                    <h3>其他文章 1</h3>
+                    <p>文章描述</p>
+                    <a href="#">閱讀更多</a>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <h2>聯絡方式</h2>
             <p>Email: a1301145@gmail.com</p>
@@ -70,6 +97,19 @@
                         project.style.display = "block";
                     } else {
                         project.style.display = "none";
+                    }
+                });
+            }
+            function filterCreations(category) {
+                let creations = document.querySelectorAll(".creation");
+                creations.forEach((creation) => {
+                    if (
+                        category === "all" ||
+                        creation.classList.contains(category)
+                    ) {
+                        creation.style.display = "block";
+                    } else {
+                        creation.style.display = "none";
                     }
                 });
             }
