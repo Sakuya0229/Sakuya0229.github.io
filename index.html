@@ -1,116 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>加速度感測器測試</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-    </style>
-    <script>
-        let updateInterval;
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>我的個人網頁</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>我的個人網站</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">關於我</a></li>
+                    <li><a href="#projects">專案</a></li>
+                    <li><a href="#contact">聯絡方式</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        function requestDeviceMotionPermission() {
-            if (typeof DeviceMotionEvent.requestPermission === 'function') {
-                DeviceMotionEvent.requestPermission()
-                    .then(permissionState => {
-                        if (permissionState === 'granted') {
-                            window.addEventListener('devicemotion', handleDeviceMotion);
-                            updateInterval = setInterval(updateScore, 100);
-                        } else {
-                            alert('未獲得加速度感測器權限');
-                        }
-                    })
-                    .catch(console.error);
-            } else {
-                // 如果瀏覽器不支持 requestPermission 方法，則直接添加事件監聽器
-                window.addEventListener('devicemotion', handleDeviceMotion);
-                updateInterval = setInterval(updateScore, 100);
+        <section id="about">
+            <h2>關於我</h2>
+            <p>這裡是你的個人簡介，介紹你的技能、背景和興趣。</p>
+        </section>
+
+        <section id="projects">
+            <h2>專案展示</h2>
+            <div class="project-filters">
+                <button onclick="filterProjects('all')">全部</button>
+                <button onclick="filterProjects('ai')">AI</button>
+                <button onclick="filterProjects('web')">前端</button>
+                <button onclick="filterProjects('data')">數據分析</button>
+            </div>
+            <div class="project-list">
+                <div class="project ai">
+                    <h3>AI 專案 1</h3>
+                    <p>專案描述</p>
+                    <a href="#">GitHub 連結</a>
+                </div>
+                <div class="project web">
+                    <h3>前端專案 1</h3>
+                    <p>專案描述</p>
+                    <a href="#">GitHub 連結</a>
+                </div>
+                <div class="project data">
+                    <h3>數據分析專案 1</h3>
+                    <p>專案描述</p>
+                    <a href="#">GitHub 連結</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>聯絡方式</h2>
+            <p>Email: your.email@example.com</p>
+            <p><a href="https://github.com/yourprofile">GitHub</a></p>
+        </section>
+
+        <script>
+            function filterProjects(category) {
+                let projects = document.querySelectorAll(".project");
+                projects.forEach((project) => {
+                    if (
+                        category === "all" ||
+                        project.classList.contains(category)
+                    ) {
+                        project.style.display = "block";
+                    } else {
+                        project.style.display = "none";
+                    }
+                });
             }
-        }
-
-        let acceleration = { x: 0, y: 0, z: 0 };
-        let cnt = 0;
-        let level = 1;
-        let notshake = 1;
-        function handleDeviceMotion(event) {
-            // acceleration.x = event.acceleration.x;
-            // acceleration.y = event.acceleration.y;
-            // acceleration.z = event.acceleration.z;
-
-            acceleration.x = event.accelerationIncludingGravity.x;
-            acceleration.y = event.accelerationIncludingGravity.y;
-            acceleration.z = event.accelerationIncludingGravity.z;
-
-
-            var accelerationX = document.getElementById("accelerationX"),
-                accelerationY = document.getElementById("accelerationY"),
-                accelerationZ = document.getElementById("accelerationZ");
-
-            accelerationX.innerHTML = acceleration.x.toFixed(2);
-            accelerationY.innerHTML = acceleration.y.toFixed(2);
-            accelerationZ.innerHTML = acceleration.z.toFixed(2);
-        }
-
-        function updateScore() {
-            const scoreElement = document.getElementById("score");
-            const score = Math.sqrt(
-                Math.pow(acceleration.x, 2) +
-                Math.pow(acceleration.y, 2) +
-                Math.pow(acceleration.z, 2)
-            );
-
-            scoreElement.innerHTML = score.toFixed(2);
-
-            const cntElement = document.getElementById("count");
-
-            if (score >= 15 && cnt < 15){
-                cnt += 1;
-                notshake = 0
-            }
-            cntElement.innerHTML = cnt.toFixed(2);
-        }
-        var mycntinterval = setInterval(updatecnt, 500);
-        function updatecnt(){
-            if(notshake && cnt > 0){
-                cnt -= 1;
-            }
-            notshake = 1;
-        }
-        var mylevelinterval = setInterval(updatelevel, 5000);
-        function updatelevel(){
-            const levelElement = document.getElementById("level");
-            if(cnt >= 10 && level < 5){
-                level += 1;
-                if(level == 5){
-                    clearInterval(mylevelinterval);
-                    mylevelinterval = setInterval(updatelevel, 10000);
-                }
-                else{
-                    clearInterval(mylevelinterval);
-                    mylevelinterval = setInterval(updatelevel, 5000);
-
-                }
-                cnt = 0;
-            }
-            else if (cnt <= 10 && level > 1 ) {
-                level -= 1;
-                clearInterval(mylevelinterval);
-                mylevelinterval = setInterval(updatelevel, 5000);
-            }
-            levelElement.innerHTML = level.toFixed(2);
-        }
-    </script>
-</head>
-<body onload="requestDeviceMotionPermission()">
-    <h1>加速度感測器測試</h1>
-    <h2>分數: <span id="score">0</span></h2>
-    <h3>次數: <span id="count">0</span></h3>
-    <h4>等級: <span id="level">1.00</span></h4>
-    <p>X 軸加速度: <span id="accelerationX">0</span> m/s²</p>
-    <p>Y 軸加速度: <span id="accelerationY">0</span> m/s²</p>
-    <p>Z 軸加速度: <span id="accelerationZ">0</span> m/s²</p>
-</body>
+        </script>
+    </body>
 </html>
