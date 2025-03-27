@@ -33,7 +33,7 @@
                 <button onclick="filterProjects('all')">全部</button>
                 <button onclick="filterProjects('ai')">AI</button>
                 <button onclick="filterProjects('web')">前端</button>
-                <button onclick="filterProjects('data')">數據分析</button>
+                <button onclick="filterProjects('other')">其他</button>
             </div>
             <div class="project-list">
                 <div class="project ai">
@@ -59,15 +59,28 @@
                         >GitHub 連結</a
                     >
                 </div>
-                <div class="project web">
-                    <h3>前端專案 1</h3>
-                    <p>專案描述</p>
-                    <a href="#">GitHub 連結</a>
+                <div class="project ai">
+                    <h3>Artificial-Intelligence-HW2</h3>
+                    <p>Artificial-Intelligence-HW2</p>
+                    <a
+                        href="https://github.com/Sakuya0229/Artificial-Intelligence-HW2"
+                        >GitHub 連結</a
+                    >
                 </div>
-                <div class="project data">
-                    <h3>數據分析專案 1</h3>
-                    <p>專案描述</p>
-                    <a href="#">GitHub 連結</a>
+                <div class="project ai">
+                    <h3>Artificial-Intelligence-HW1</h3>
+                    <p>Artificial-Intelligence-HW1</p>
+                    <a
+                        href="https://github.com/Sakuya0229/Artificial-Intelligence-HW1"
+                        >GitHub 連結</a
+                    >
+                </div>
+                <div class="project other">
+                    <h3>Twitch2Youtube</h3>
+                    <p>Twitch2Youtube</p>
+                    <a href="https://github.com/Sakuya0229/Twitch2Youtube"
+                        >GitHub 連結</a
+                    >
                 </div>
             </div>
         </section>
@@ -104,34 +117,6 @@
             <p>Email: a1301145@gmail.com</p>
             <p><a href="https://github.com/Sakuya0229">GitHub</a></p>
         </section>
-
-        <script>
-            function filterProjects(category) {
-                let projects = document.querySelectorAll(".project");
-                projects.forEach((project) => {
-                    if (
-                        category === "all" ||
-                        project.classList.contains(category)
-                    ) {
-                        project.style.display = "block";
-                    } else {
-                        project.style.display = "none";
-                    }
-                });
-            }
-            function filterCreations(category) {
-                let creations = document.querySelectorAll(".creation");
-                creations.forEach((creation) => {
-                    if (
-                        category === "all" ||
-                        creation.classList.contains(category)
-                    ) {
-                        creation.style.display = "block";
-                    } else {
-                        creation.style.display = "none";
-                    }
-                });
-            }
-        </script>
+        <script src="scripts.js"></script>
     </body>
 </html>
